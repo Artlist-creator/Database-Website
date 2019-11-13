@@ -1,0 +1,507 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>DBI Project Group 2</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/truthful.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/github.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- 2 minute section -->
+            <section>
+
+                <section data-background="#ffffff" data-background-transition="zoom" data-transition="zoom" data-transition-speed="fast">
+                    <h1>DBI Project: Orphange Management</h1>
+                    <p>
+                        <small><a href="https://github.com" rel="author">Tuan Hoang</a> / Welcome to our project / <a href="#">Cuong Quach</a></small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Why we choose this Topic?</h2>
+                    <ul>
+                        <li>Randomly pick</li>
+                        <li>Good topic for in learning SQL</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Our Tables</h2>
+                    <table>
+                        <caption> Orphanage's Teen Information</caption>
+                        <thead>
+
+                            <tr>
+                                <th>No</th>
+                                <th>Information</th>
+                                <th>Data Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>ID</td>
+                                <td>INT</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Name</td>
+                                <td>VARCHAR</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Gender</td>
+                                <td>VARCHAR</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>BirthDay</td>
+                                <td>DATE</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </section>
+
+                <section>
+                    <h2>There are more !!!</h2>
+                    <table>
+                        <caption> School Information</caption>
+                        <thead>
+
+                            <tr>
+                                <th>No</th>
+                                <th>Information</th>
+                                <th>Data Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>ID</td>
+                                <td>INT</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>SchoolName</td>
+                                <td>VARCHAR</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Grade</td>
+                                <td>INT</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </section>
+
+
+                <section>
+                    <h2>And More !!!</h2>
+                    <table>
+                        <caption> Friend &amp; Likes (2 Tables) </caption>
+                        <thead>
+
+                            <tr>
+                                <th>No</th>
+                                <th>Information</th>
+                                <th>Data Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>ID1</td>
+                                <td>INT</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>ID2</td>
+                                <td>INT</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </section>
+
+            </section>
+
+            <!-- 4 minute section -->
+            <section>
+
+                <section>
+                    <h2>Entity / Relationship model</h2>
+                    <ul>
+                </section>
+
+                <section>
+                    <h2>Diagram</h2>
+                    <p>
+                        <img src="Q2.png" alt="Graph" height="700">
+                    </p>
+                </section>
+
+                <section>
+                    <h2>A relationships graph between inserted values in table will be revealed later ;) </h2>
+                </section>
+            </section>
+
+            <!-- 3 minute section -->
+            <section>
+
+                <section>
+                    <h2>Create Table</h2>
+                    <ul>
+                </section>
+
+                <section data-transition="slide-in none-out">
+                    <h2>Breaking up the components</h2>
+                    <p>
+                        <pre class="fragment no-highlight colored-comprehension"><code data-noescape class="hljs"><span class="new-collection">create </span><span class="item-mutation">table </span>OrphanageTeenInfo
+<span class="collection-type">(</span>
+    <span class="item-mutation">ID </span> <span class="for-loop">INT</span><span class="collection-type"> <span class="conditional-clause">PRIMARY KEY,</span></span>
+    <span class="item-mutation">Name </span> <span class="for-loop">VARCHAR(50),</span><span class="collection-type"></span>
+    <span class="item-mutation">Gender </span> <span class="for-loop">VARCHAR(1),</span><span class="collection-type"></span>
+    <span class="item-mutation">Birthday </span> <span class="for-loop">DATE</span><span class="collection-type"></span>
+<span class="collection-type">)</span> </span></code></pre>
+
+                        <pre class="fragment no-highlight colored-comprehension"><code data-noescape class="hljs"><span class="new-collection">create </span><span class="item-mutation">table </span>Highschooler
+<span class="collection-type">(</span>
+    <span class="item-mutation">ID </span> <span class="for-loop">INT</span><span class="collection-type"> <span class="conditional-clause">REFERENCES OrphanageTeenInfo(ID),</span></span>
+    <span class="item-mutation">schoolName </span> <span class="for-loop">VARCHAR(50),</span><span class="collection-type"></span>
+    <span class="item-mutation">grade </span> <span class="for-loop">INT,</span><span class="collection-type"></span>
+    <span class="conditional-clause">PRIMARY KEY</span> <span class="for-loop">(ID)</span><span class="collection-type"></span>
+<span class="collection-type">)</span> </span></code></pre>
+
+                        <pre class="fragment no-highlight colored-comprehension"><code data-noescape class="hljs"><span class="new-collection">create </span><span class="item-mutation">table </span>Friend
+<span class="collection-type">(</span>
+    <span class="item-mutation">ID1 </span> <span class="for-loop">INT</span><span class="collection-type"> <span class="conditional-clause">REFERENCES Highschooler(ID),</span></span>
+    <span class="item-mutation">ID2 </span> <span class="for-loop">INT</span><span class="collection-type"> <span class="conditional-clause">REFERENCES Highschooler(ID),</span></span>
+    <span class="conditional-clause">PRIMARY KEY</span> <span class="for-loop">(ID1,ID2)</span><span class="collection-type"></span>
+<span class="collection-type">)</span> </span></code></pre>
+                        <small class="fragment no-highlight colored-comprehension">Same pattern saw in Likes Table</small>
+                    </p>
+                </section>
+
+                <section data-transition="none-in slide-out">
+                    <h2>Add Constraint</h2>
+                    <p>
+                        <pre class="python"><code data-trim>
+alter table OrphanageTeenInfo
+    alter column Name varchar(30) not null;          </code></pre>
+                        <pre class="python"><code data-trim>
+alter table OrphanageTeenInfo
+    add constraint df_Gender
+        default 'F' for Gender;
+          </code></pre>
+                        <pre class="python"><code data-trim>
+alter table Highschooler
+    add constraint ManagerTeenager check (grade between 9 and 12);
+          </code></pre>
+                    </p>
+                </section>
+            </section>
+
+            <!-- 3 minute section -->
+            <section>
+
+                <section>
+                    <h2>But wait... there's more!</h2>
+                    <ul>
+                </section>
+
+                <section data-transition="slide-in fade-out">
+                    <h2>Insert Data Into Table</h2>
+                    <p>
+                        <pre class="no-highlight colored-comprehension"><code data-noescape class="hljs"><span class="new-collection">INSERT</span> INTO <span class="collection-type">OrphanageTeenInfo</span>
+<span class="for-loop">VALUES</span><span class="collection-type"> (</span><span class="conditional-clause">1510, 'Jordan', 'M' ,'2005-09-25'</span><span class="collection-type">);</span></code></pre>
+                    </p>
+                    
+                    <p>
+                        <pre class="no-highlight colored-comprehension"><code data-noescape class="hljs"><span class="new-collection">INSERT</span> INTO <span class="collection-type">Highschooler</span>
+<span class="for-loop">VALUES</span><span class="collection-type"> (</span><span class="conditional-clause">1510, 'Cornell', 9</span><span class="collection-type">);</span></code></pre>
+                    </p>
+                    
+                    <p>
+                        <pre class="no-highlight colored-comprehension"><code data-noescape class="hljs"><span class="new-collection">INSERT</span> INTO <span class="collection-type">Friend</span>
+<span class="for-loop">VALUES</span><span class="collection-type"> (</span><span class="conditional-clause">1510, 1381</span><span class="collection-type">);</span></code></pre>
+                    </p>
+                    
+                    <small class="fragment no-highlight colored-comprehension">Same way for table Likes</small>
+                    
+                </section>
+
+                <section>
+                    <h2>Our Table Have</h2>
+                    <ul>
+                        <li>OrphanageTeenInfo 15 tuples</li>
+                        <li>Highschooler 15 tuples</li>
+                        <li>Friend 20 tuples</li>
+                        <li>Likes 9 values</li>
+                    </ul>
+                    
+                </section>
+
+
+                <section>
+                    <h2>If you prefer a Graph. There we go :)</h2>
+                    <img src="social.png" alt="social graph">
+                </section>
+
+            </section>
+
+            <!-- 3 minute section -->
+            <section>
+
+                <section>
+                    <h2>Examples</h2>
+                </section>
+
+                <section>
+                    <h2>Query using inner join</h2>
+                    <pre class="python"><code data-trim>
+--Find Names and grades of students who only have friends
+--in the same grade.
+--Return the result sorted by grade, 
+--then by Name within each grade.
+
+select Name, grade
+from OrphanageTeenInfo
+         join (select ID, grade
+               from Highschooler
+               where Highschooler.ID not in
+                     (
+                         select H1.ID
+                         from Friend,
+                              Highschooler H1,
+                              Highschooler H2
+                         where H1.ID = ID1
+                           and H2.ID = ID2
+                           and H1.grade <> H2.grade
+                     )) as Ig
+              on (OrphanageTeenInfo.ID = Ig.ID)
+order by grade;
+          </code></pre>
+                </section>
+
+                <section>
+                    <h2>Query using outer join</h2>
+                    <pre class="python"><code data-trim>
+-- Find the all name and grade of the student(s)
+-- with the name and grade of the student(s) they like.
+--Return null if they do not like anyone
+
+with t as (select Name, grade, OrphanageTeenInfo.ID
+           from OrphanageTeenInfo,
+                Highschooler
+           where Highschooler.ID = OrphanageTeenInfo.ID)
+select t1.name, t1.grade, t2.name, t2.grade
+from t t1
+         left join Likes on t1.ID = Likes.ID1
+         left join t t2 on Likes.ID2 = t2.ID;
+          </code></pre>
+                </section>
+                
+                <section>
+                    <h2>Using subquery in where</h2>
+                    <pre class="python"><code data-trim>
+-- Find the name and grade of the student(s)
+-- with the greatest number of friends.
+
+select name, grade
+from Highschooler,
+     OrphanageTeenInfo,
+     (
+         select ID1
+         from Friend
+             except
+              -- student who has someone with more friends than them
+         select distinct (FC1.ID1)
+         from (
+                  select ID1, count(ID2) as FriendCount
+                  from Friend
+                  group by ID1
+              ) as FC1,
+              (
+                  select ID1, count(ID2) as FriendCount
+                  from Friend
+                  group by ID1
+              ) as FC2
+         where FC1.FriendCount < FC2.FriendCount
+     ) as MaxFriend
+where exists(select Htemp.ID from Highschooler Htemp where Htemp.ID = MaxFriend.ID1);
+         
+          </code></pre>
+                </section>
+                
+                <section>
+                    <h2>Using subquery in from.</h2>
+                    <pre class="python"><code data-trim>
+-- For every situation where student A likes student B,
+-- but student B likes a different student C,
+-- return the Names and grades of A, B, and C.
+
+select H1.Name, H1.grade, H2.Name, H2.grade, H3.Name, H3.grade
+from Highschooler H1,
+     Highschooler H2,
+     Highschooler H3,
+     (select L2.ID1 as ID1, L2.ID2 as ID2, L1.ID2 as ID3
+      from Likes L1,
+           Likes L2,
+           (
+               select ID2 as ID
+               from Likes
+               intersect
+               select ID1 as ID
+               from Likes
+           ) as LILI
+      where ID = L1.ID1
+        and ID = L2.ID2
+        and L1.ID2 != L2.ID1) as I
+where ID1 = H1.ID
+  and ID2 = H2.ID
+  and ID3 = H3.ID;
+          </code></pre>
+                </section>
+                
+                <section>
+                    <h2>Query using group by and aggregate functions</h2>
+                    <pre class="python"><code data-trim>
+-- Find the difference between the number of students
+-- in the Orphanage and the number of different first Names.
+select (count(ID) - count(distinct Name)) as diff
+from OrphanageTeenInfo;
+          </code></pre>
+                </section>
+                
+                <section>
+                    <h2>Transaction</h2>
+                    <pre class="python"><code data-trim>
+set xact_abort on;
+begin transaction
+    insert into OrphanageTeenInfo
+     values(3765, 'Cameron', 'M','2002-09-25');
+    insert into OrphanageTeenInfo
+     values(3765, 'Haley', 'F','2001-02-21');
+
+    if(@@ERROR <> 0)
+        begin
+            rollback transaction ;
+            raiserror 
+            ('An error occurred inserting the information.',1,1);
+        end
+commit transaction
+          </code></pre>
+                </section>
+                
+                <section>
+                    <h2>Triggers</h2>
+                    <pre class="python"><code data-trim>
+--create triggers to maintain friendship
+create trigger addFS
+    on Friend
+    after insert
+    as
+begin
+    insert into Friend values 
+    (
+        (select ID2 from inserted),
+        (select ID1 from inserted)
+    );
+end;
+
+create trigger delFS
+    on Friend
+    after delete
+    as
+begin
+    delete
+    from Friend
+    where (ID1 = (select ID2 from deleted) 
+    and ID2 = (select ID1 from deleted));
+end;
+          </code></pre>
+                </section>
+                
+                <section>
+                    <h2>Procedure</h2>
+                    <pre class="python"><code data-trim>
+-- create procedure to print all Orphanage Obsolescent Name
+-- and their school they are studying at and their grade
+create procedure PrintALL
+as begin
+    select Name, grade, schoolName
+    from OrphanageTeenInfo, Highschooler
+    where Highschooler.ID = OrphanageTeenInfo.ID;
+end;
+          </code></pre>
+                </section>
+
+            </section>
+
+            <section style="text-align: left;" data-background="#663399" data-background-transition="slide" data-transition="slide">
+                <h3>Thank you for comming</h3>
+    
+                <p>
+                    <small><a href="#">Tuan Hoang</a> &amp; <a href="#">Cuong Quach</a></small>
+                </p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            history: true,
+
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [{
+                    src: 'plugin/markdown/marked.js'
+                },
+                {
+                    src: 'plugin/markdown/markdown.js'
+                },
+                {
+                    src: 'plugin/notes/notes.js',
+                    async: true
+                },
+                {
+                    src: 'plugin/highlight/highlight.js',
+                    async: true,
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                }
+            ]
+        });
+
+    </script>
+</body>
+
+</html>
