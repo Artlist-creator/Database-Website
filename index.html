@@ -327,9 +327,8 @@ from t t1
                 <section>
                     <h2>Using subquery in where</h2>
                     <pre class="python"><code data-trim>
--- Find the name and grade of the student(s)
+-- Find the name and grade of the student(s) 
 -- with the greatest number of friends.
-
 select name, grade
 from Highschooler,
      OrphanageTeenInfo,
@@ -351,7 +350,12 @@ from Highschooler,
               ) as FC2
          where FC1.FriendCount < FC2.FriendCount
      ) as MaxFriend
-where exists(select Htemp.ID from Highschooler Htemp where Htemp.ID = MaxFriend.ID1);
+where exists
+    (
+        select Htemp.ID 
+        from Highschooler Htemp 
+        where Htemp.ID = MaxFriend.ID1
+    );
          
           </code></pre>
                 </section>
