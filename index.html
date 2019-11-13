@@ -159,7 +159,7 @@
                 <section>
                     <h2>Diagram</h2>
                     <p>
-                        <img src="Q2.png" alt="Graph" height="700">
+                        <img src="Q2.png" alt="Graph" height="600">
                     </p>
                 </section>
 
@@ -336,24 +336,21 @@ from Highschooler,
          select ID1
          from Friend
              except
-              -- student who has someone with more friends than them
+             -- student who has someone with
+             -- more friends than them
          select distinct (FC1.ID1)
          from (
                   select ID1, count(ID2) as FriendCount
-                  from Friend
-                  group by ID1
+                  from Friend group by ID1
               ) as FC1,
               (
                   select ID1, count(ID2) as FriendCount
-                  from Friend
-                  group by ID1
+                  from Friend group by ID1
               ) as FC2
          where FC1.FriendCount < FC2.FriendCount
      ) as MaxFriend
 where exists
-    (
-        select Htemp.ID 
-        from Highschooler Htemp 
+    (select Htemp.ID from Highschooler Htemp 
         where Htemp.ID = MaxFriend.ID1
     );
          
