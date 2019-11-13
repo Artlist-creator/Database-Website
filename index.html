@@ -350,8 +350,7 @@ from Highschooler,
      ) as MaxFriend
 where exists
     (select Htemp.ID from Highschooler Htemp 
-        where Htemp.ID = MaxFriend.ID1
-    ); 
+        where Htemp.ID = MaxFriend.ID1 ); 
           </code></pre>
                 </section>
                 
