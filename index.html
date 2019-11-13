@@ -311,7 +311,7 @@ order by grade;
                     <pre class="python"><code data-trim>
 -- Find the all name and grade of the student(s)
 -- with the name and grade of the student(s) they like.
---Return null if they do not like anyone
+-- Return null if they do not like anyone
 
 with t as (select Name, grade, OrphanageTeenInfo.ID
            from OrphanageTeenInfo,
@@ -327,8 +327,7 @@ from t t1
                 <section>
                     <h2>Using subquery in where</h2>
                     <pre class="python"><code data-trim>
--- Find the name and grade of the student(s) 
--- with the greatest number of friends.
+--Find name, grade of student(s) with the greatest num of friends.
 select name, grade
 from Highschooler,
      OrphanageTeenInfo,
@@ -352,8 +351,7 @@ from Highschooler,
 where exists
     (select Htemp.ID from Highschooler Htemp 
         where Htemp.ID = MaxFriend.ID1
-    );
-         
+    ); 
           </code></pre>
                 </section>
                 
